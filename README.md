@@ -16,11 +16,12 @@ Install Chrome and Firefox
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Enable developer mode in Chrome and load the unpacked extension:
+Enable developer mode in Chrome and Load Unpacked Extension:
 
 [Chrome Getting Started Guide](https://developer.chrome.com/extensions/getstarted)
+
+Open about:debugging in Firefox and Load Temporary Add-on:
+
 [Firefox Getting Started Guide](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#Installing)
 
 ### Code Style
@@ -29,7 +30,7 @@ Use [Prettier](https://prettier.io) for code formatting
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for the process for submitting pull requests.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for the process for submitting pull requests.
 
 ## Versioning
 
