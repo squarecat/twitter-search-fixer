@@ -30,7 +30,7 @@ const accountsSelector = '.typeahead-accounts';
 
 const hideClass = 'twitter-fixer-hide-me';
 const reverseClass = 'twitter-fixer-reverse';
-const accountClass = 'twitter-fixer-accounts';
+const hideAccountBorderClass = 'twitter-fixer-accounts';
 
 searchInput.addEventListener('focus', doTheMagic);
 searchInput.addEventListener('blur', doTheMagic);
@@ -57,19 +57,13 @@ function doTheMagic({ currentTarget }) {
 function reverseStuff() {
   const results = document.querySelector(resultsSelector);
   results.classList.add(reverseClass);
+  fixAccountBorder(true);
 }
 
 function unReverseStuff() {
   const results = document.querySelector(resultsSelector);
   results.classList.remove(reverseClass);
-}
-
-function showStuff() {
-  const typeahead = document.querySelector(typeaheadSelector);
-  [...typeahead.querySelectorAll(toHide)].forEach(el =>
-    el.classList.remove(hideClass)
-  );
-  document.querySelector(accountsSelector).classList.remove(accountClass);
+  fixAccountBorder(false);
 }
 
 function hideStuff() {
@@ -77,5 +71,25 @@ function hideStuff() {
   [...typeahead.querySelectorAll(toHide)].forEach(el =>
     el.classList.add(hideClass)
   );
-  document.querySelector(accountsSelector).classList.add(accountClass);
+  fixAccountBorder(true);
+}
+
+function showStuff() {
+  const typeahead = document.querySelector(typeaheadSelector);
+  [...typeahead.querySelectorAll(toHide)].forEach(el =>
+    el.classList.remove(hideClass)
+  );
+  fixAccountBorder(false);
+}
+
+function fixAccountBorder(remove) {
+  if (remove) {
+    document
+      .querySelector(accountsSelector)
+      .classList.add(hideAccountBorderClass);
+  } else {
+    document
+      .querySelector(accountsSelector)
+      .classList.remove(hideAccountBorderClass);
+  }
 }
