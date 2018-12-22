@@ -9,3 +9,8 @@
   border-top: none !important;
   border-top-color: transparent !important;
 }
+
+.twitter-fixer-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+}

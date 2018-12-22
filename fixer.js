@@ -10,39 +10,66 @@
 // - topics
 // - user accounts
 
+let hideSetting;
+chrome.storage.sync.get('twitterFixerSettingHide', function(data) {
+  hideSetting = data.twitterFixerSettingHide;
+});
+
+chrome.storage.onChanged.addListener(function({ twitterFixerSettingHide }) {
+  hideSetting = twitterFixerSettingHide.newValue;
+  resetStuff();
+});
+
 const searchInput = document.querySelector('.search-input');
 const toHide =
   '.typeahead-recent-searches, .typeahead-saved-searches, .typeahead-topics';
 
 const typeaheadSelector = '.typeahead';
+const resultsSelector = '.js-typeahead-results';
 const accountsSelector = '.typeahead-accounts';
 
 const hideClass = 'twitter-fixer-hide-me';
+const reverseClass = 'twitter-fixer-reverse';
 const accountClass = 'twitter-fixer-accounts';
 
 searchInput.addEventListener('focus', doTheMagic);
 searchInput.addEventListener('blur', doTheMagic);
 searchInput.addEventListener('input', doTheMagic);
 
+function resetStuff() {
+  showStuff();
+  unReverseStuff();
+}
+
 function doTheMagic({ currentTarget }) {
-  if (currentTarget.value) {
-    hideStuff();
+  if (hideSetting) {
+    if (currentTarget.value) {
+      hideStuff();
+    } else {
+      showStuff();
+    }
   } else {
     showStuff();
+    reverseStuff();
   }
 }
 
-// function reverseStuff() {
-//   const results = document.querySelector('.js-typeahead-results');
-//   results.classList.add('twitter-fixer-reverse-me');
-// }
+function reverseStuff() {
+  const results = document.querySelector(resultsSelector);
+  results.classList.add(reverseClass);
+}
+
+function unReverseStuff() {
+  const results = document.querySelector(resultsSelector);
+  results.classList.remove(reverseClass);
+}
 
 function showStuff() {
   const typeahead = document.querySelector(typeaheadSelector);
   [...typeahead.querySelectorAll(toHide)].forEach(el =>
     el.classList.remove(hideClass)
   );
-  document.querySelector('.typeahead-accounts').classList.remove(accountClass);
+  document.querySelector(accountsSelector).classList.remove(accountClass);
 }
 
 function hideStuff() {
@@ -50,5 +77,5 @@ function hideStuff() {
   [...typeahead.querySelectorAll(toHide)].forEach(el =>
     el.classList.add(hideClass)
   );
-  document.querySelector('.js-typeahead-accounts').classList.add(accountClass);
+  document.querySelector(accountsSelector).classList.add(accountClass);
 }

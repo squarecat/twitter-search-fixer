@@ -4,7 +4,12 @@
 
 'use strict';
 
+const options = {
+  twitterFixerSettingHide: true
+};
+
 chrome.runtime.onInstalled.addListener(function() {
+  chrome.storage.sync.set(options);
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     chrome.declarativeContent.onPageChanged.addRules([
       {
