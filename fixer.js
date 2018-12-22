@@ -14,6 +14,12 @@ const searchInput = document.querySelector('.search-input');
 const toHide =
   '.typeahead-recent-searches, .typeahead-saved-searches, .typeahead-topics';
 
+const typeaheadSelector = '.typeahead';
+const accountsSelector = '.typeahead-accounts';
+
+const hideClass = 'twitter-fixer-hide-me';
+const accountClass = 'twitter-fixer-accounts';
+
 searchInput.addEventListener('focus', doTheMagic);
 searchInput.addEventListener('blur', doTheMagic);
 searchInput.addEventListener('input', doTheMagic);
@@ -26,27 +32,23 @@ function doTheMagic({ currentTarget }) {
   }
 }
 
-function reverseStuff() {
-  const results = document.querySelector('.js-typeahead-results');
-  results.classList.add('twitter-fixer-reverse-me');
-}
+// function reverseStuff() {
+//   const results = document.querySelector('.js-typeahead-results');
+//   results.classList.add('twitter-fixer-reverse-me');
+// }
 
 function showStuff() {
-  const typeahead = document.querySelector('.typeahead');
+  const typeahead = document.querySelector(typeaheadSelector);
   [...typeahead.querySelectorAll(toHide)].forEach(el =>
-    el.classList.remove('twitter-fixer-hide-me')
+    el.classList.remove(hideClass)
   );
-  document
-    .querySelector('.js-typeahead-accounts')
-    .classList.add('twitter-fixer-accounts-improved');
+  document.querySelector('.typeahead-accounts').classList.remove(accountClass);
 }
 
 function hideStuff() {
-  const typeahead = document.querySelector('.typeahead');
+  const typeahead = document.querySelector(typeaheadSelector);
   [...typeahead.querySelectorAll(toHide)].forEach(el =>
-    el.classList.add('twitter-fixer-hide-me')
+    el.classList.add(hideClass)
   );
-  document
-    .querySelector('.js-typeahead-accounts')
-    .classList.remove('twitter-fixer-accounts-improved');
+  document.querySelector('.js-typeahead-accounts').classList.add(accountClass);
 }

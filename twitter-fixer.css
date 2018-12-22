@@ -5,6 +5,7 @@
   opacity: 0 !important;
 }
 
-.twitter-fixer-accounts-improved {
+.twitter-fixer-accounts {
   border-top: none !important;
+  border-top-color: transparent !important;
 }
