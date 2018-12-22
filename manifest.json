@@ -1,6 +1,6 @@
 {
   "name": "Twitter Search Fixer",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Show the Twitter accounts you searched for first in the list and stop accidental clicks on all that other stuff",
   "permissions": ["declarativeContent", "storage", "*://*.twitter.com/*"],
   "content_scripts": [
