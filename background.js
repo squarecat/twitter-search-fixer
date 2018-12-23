@@ -8,19 +8,27 @@ const options = {
   twitterFixerSettingHide: true
 };
 
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+  if (changeInfo.status === 'complete' && tab.url.match(/twitter\.com/)) {
+    chrome.pageAction.show(tabId);
+  } else {
+    chrome.pageAction.hide(tabId);
+  }
+});
+
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set(options);
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-    chrome.declarativeContent.onPageChanged.addRules([
-      {
-        conditions: [
-          new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { hostEquals: 'twitter.com', schemes: ['http', 'https'] },
-            css: ['.search-input']
-          })
-        ],
-        actions: [new chrome.declarativeContent.ShowPageAction()]
-      }
-    ]);
-  });
+  // chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+  //   chrome.declarativeContent.onPageChanged.addRules([
+  //     {
+  //       conditions: [
+  //         new chrome.declarativeContent.PageStateMatcher({
+  //           pageUrl: { hostEquals: 'twitter.com', schemes: ['http', 'https'] },
+  //           css: ['.search-input']
+  //         })
+  //       ],
+  //       actions: [new chrome.declarativeContent.ShowPageAction()]
+  //     }
+  //   ]);
+  // });
 });

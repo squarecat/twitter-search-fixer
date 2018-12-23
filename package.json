@@ -1,6 +1,6 @@
 {
   "name": "twitter-chrome-extension",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Fix Twitter search by not accidentally clicking #hashtags",
   "main": "index.js",
   "scripts": {
