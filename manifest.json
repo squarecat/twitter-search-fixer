@@ -2,7 +2,7 @@
   "name": "Twitter Search Fixer",
   "version": "0.2.1",
   "description": "Fix Twitter search by not accidentally clicking #hashtags",
-  "permissions": ["storage", "*://*.twitter.com/*"],
+  "permissions": ["storage", "webNavigation", "tabs", "*://*.twitter.com/*"],
   "content_scripts": [
     {
       "css": ["twitter-fixer.css"],
